@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>reveal.js</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	<style>
+		small {
+			font-size: 35% !important
+		}
+
+		h2 {
+			margin-bottom: 5px !important;
+		}
+
+		/* img {
+			max-width: 40% !important;
+		} */
+
+		.slide-s {
+			height: 750px;
+			overflow-y: auto !important;
+		}
+
+		.slide-s::-webkit-scrollbar {
+			display: none !important;
+			-ms-overflow-style: none !important;
+			scrollbar-width: none !important;
+
+		}
+
+		.column,
+		.col {
+
+
+			-ms-flex-preferred-size: 0;
+			flex-basis: 0;
+			-webkit-box-flex: 1;
+			-ms-flex-positive: 1;
+			flex-grow: 1;
+			max-width: 100%;
+			/* display: flex;
+
+			flex-wrap: wrap; */
+		}
+
+		.row {
+			/* flex-basis: 50%;
+			
+			box-sizing: border-box; */
+			display: flex;
+			-ms-flex-wrap: wrap;
+			flex-wrap: wrap;
+		}
+
+
+		li {
+			margin-left: 20px;
+		}
+
+		.pelota {
+			width: 25px;
+			height: 25px;
+			border-radius: 50px;
+			display: inline-block;
+		}
+
+		.pelota-label {
+			font-size: 30px;
+			display: inline-block;
+			margin-right: 30px;
+		}
+
+		.ib {
+			display: inline-block !important;
+		}
+
+		p {
+			margin: 0px !important
+		}
+
+		.f {
+			display: flex !important;
+		}
+
+		.f75 {
+			font-size: 75% !important;
+		}
+
+		.shadow {
+			filter: drop-shadow(0 0 2px gray);
+		}
+		.mw {
+			max-width: 55% !important;
+		  margin: 0px;
+		  padding: 0px;
+  		}
+	</style>
+
+
+	</style>
+</head>
+
+<body>
+	<div class="reveal">
+
+		<div class="slides">
+			<section>
+				<h3 class="shadow">Editing biases in deep learning language models</h3>
+				<h6>Ismael Garrido Muñoz</h6>
+			</section>
+			<section>
+				<div class="row">
+					<div class="col">
+						<h3>Explainability</h3>
+						<h4>Explicabilidad</h4>
+					</div>
+					<div class="col">
+						<h3>Fairness</h3>
+						<h4>Equidad</h4>
+					</div>
+
+				</div>
+				<br>
+					<div class="row">
+						Avances en IA y deep learning,
+						Impacto en decisiones críticas,
+						Necesidad de transparencia
+					</div>
+
+
+			</section>
+
+			<section >
+				<h5 style="font-size: 80%;">ChatGPT could be used for good, but like many other AI models, it's rife
+					with racist and
+					discriminatory bias - <a
+						href="https://www.insider.com/chatgpt-is-like-many-other-ai-models-rife-with-bias-2023-1">insider.com</a></a>
+				</h5>
+				<h5 style="font-size: 80%;">The Internet’s New Favorite AI Proposes Torturing Iranians and Surveilling
+					Mosques
+					- <a
+						href="https://theintercept.com/2022/12/08/openai-chatgpt-ai-bias-ethics/">theintercept.com</a></a>
+				</h5>
+				<img src="img/gpt.png">
+			</section>
+
+			<section>
+				<div class="row">
+				<div class="col">
+
+		          <h3>A Survey on Bias in Deep NLP</h3>
+		          <ul>
+		            <li>Revisión integral</li>
+		            <li>Definición formal</li>
+		            <li>Metodologías y recursos</li>
+		          </ul>
+		      </div>
+				<div class="col">
+		       	<h3>MarIA and BETO are sexist</h3>
+		          <ul>
+		            <li>Evaluación de sesgo de género en español</li>
+		            <li>Adjetivos</li>
+		            <li>Caja negra/blanca = probabilidad/ranking</li>
+		            <li>Evaluados 20 models</li>
+		          </ul>
+		      	</div>
+				</div>
+			</section>
+
+			<section class="slide-s">
+				<h2>MarIA and BETO are sexist</h2>
+				<img src="img/beto.JPG">
+			</section>
+
+			<section class="slide-s">
+				<h3>LM Debugger - My wife is working as a ???</h3>
+					<small>Geva, Mor & Caciularu, Avi & Dar, Guy & Roit, Paul & Sadde, Shoval & Shlain, Micah & Tamir, Bar &
+					Goldberg, Yoav. (2022). LM-Debugger: An Interactive Tool for Inspection and Intervention in
+					Transformer-Based Language Models. </small>
+				<img src="img/lmdebug1.JPG">
+			</section>
+
+			<section class="slide-s">
+				<h3>My wife is working as a ???</h3>
+				<img src="img/lmdebug2.JPG">
+			</section>
+
+			<section>
+				<h3>
+					Rome - Causal tracing
+				</h3>
+								<small>Meng, K., Bau, D., Andonian, A., and Belinkov, Y., Locating and Editing Factual Associations in
+					GPT </small>
+
+				<ul class="f75">
+					<li>
+						1. Run once with Clean input. Record Hidden Activations.
+					</li>
+					<li>
+						2. Corrupt input, output is changed.
+					</li>
+					<li>
+						3. Run again. For each Hidden State, copy it hover from the clean input
+					</li>
+					<li>
+						4. If the output is back. Hidden State is important.
+					</li>
+				</ul>
+				<div style="display: block;">
+					<div class="pelota" style="background-color: mediumpurple"></div>
+					<div class="pelota-label">Hidden State</div>
+					<div class="pelota" style="background-color: red"></div>
+					<div class="pelota-label">ATT</div>
+					<div class="pelota" style="background-color: green"></div>
+					<div class="pelota-label">MLP</div>
+					<img src="img/rome.JPG"></p>
+				</div>
+
+			</section>
+			<section class="slide-s">
+				<h3>
+					Rome (Base example)
+				</h3>
+				<img src="img/ex11.png">
+				<img src="img/ex12.png">
+				<img src="img/ex13.png">
+			</section>
+
+			<section class="slide-s">
+
+				<div class="row">
+					<div class="col">
+						<img src="img/f1.png">
+						<img src="img/f2.png">
+						<img src="img/f3.png">
+					</div>
+					<div class="col">
+						<img src="img/m1.png">
+						<img src="img/m2.png">
+						<img src="img/m3.png">
+					</div>
+				</div>
+				<h3>
+					Rome (example 1 f vs m)
+				</h3>
+				<div style="height: 200px; width: 100%"></div>
+
+			</section>
+
+			<section class="slide-s">
+				<h3>Precise Bias Location<h3>
+				<img src="img/precise1.JPG" class="mw">
+			</section>
+			<section class="slide-s">
+				<h3>Precise Bias Location<h3>
+				<img src="img/precise2.JPG">
+			</section>
+			<section class="slide-s">
+				<h3>Precise Bias Location<h3>
+				<img src="img/precise3.JPG">
+			</section>
+
+			<section class="slide-s">
+				<h3>Precise Bias Location<h3>
+				<img src="img/precise4.JPG">
+			</section>
+
+			<section>
+				<ul>
+		            <li>Evaluación end-to-end</li>
+		            <li>Creación de datasets flexibles</li>
+				</ul>
+
+			</section>
+
+
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+</body>
+
+</html>
